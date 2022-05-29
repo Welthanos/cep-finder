@@ -1,3 +1,5 @@
+import 'package:cep_finder/components/bottomImage.dart';
+import 'package:cep_finder/components/searchBar.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -40,7 +42,27 @@ class _MyHomePageState extends State<MyHomePage> {
         toolbarHeight: 75,
         title: widget.title,
       ),
-      body: Column(),
+      body: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: const [
+            Center(
+              child: SizedBox(
+                width: 360,
+                child: SearchBar(),
+              ),
+            ),
+            SizedBox(height: 20),
+            SizedBox(
+              height: 300,
+              width: 350,
+            ),
+            SizedBox(height: 20),
+            BottomImage(),
+          ],
+        ),
+      ),
     );
   }
 }
