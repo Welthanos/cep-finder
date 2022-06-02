@@ -1,22 +1,25 @@
 import 'dart:convert';
-
-import 'package:cep_finder/components/bottomImage.dart';
-import 'package:cep_finder/components/searchBar.dart';
 import 'package:flutter/material.dart';
+
+import 'package:cep_finder/components/bottom_image.dart';
+import 'package:cep_finder/components/search_bar.dart';
+import '../components/cep_boxes.dart';
+
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 
-import '../components/cepBoxes.dart';
 
 class CepPage extends StatefulWidget {
-  const CepPage({Key? key, required this.title}) : super(key: key);
-
-  final Widget title;
+  const CepPage({Key? key}) : super(key: key);
 
   @override
   State<CepPage> createState() => _CepPageState();
 }
 
 class _CepPageState extends State<CepPage> {
+
+  Widget logo = SizedBox(height: 60, child: Image.asset('assets/images/logo.png'));
+
   var logradouro = {};
 
   Future getData(cepInformado) async {
@@ -31,7 +34,6 @@ class _CepPageState extends State<CepPage> {
         "localidade": text["localidade"],
         "uf": text["uf"],
       };
-      print(logradouro);
     });
   }
 
@@ -39,9 +41,10 @@ class _CepPageState extends State<CepPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: const Color.fromARGB(255, 141, 141, 141),
         toolbarHeight: 75,
-        title: widget.title,
+        title: logo,
       ),
       body: Container(
         color: const Color.fromARGB(255, 238, 238, 238),

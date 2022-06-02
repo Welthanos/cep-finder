@@ -1,4 +1,4 @@
-import 'package:cep_finder/components/cepFields.dart';
+import 'package:cep_finder/components/cep_fields.dart';
 import 'package:flutter/material.dart';
 
 class CepBoxes extends StatelessWidget {

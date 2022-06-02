@@ -1,4 +1,4 @@
-import 'package:cep_finder/screens/cepPage.dart';
+import 'package:cep_finder/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,14 +10,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'CEP Finder',
-      home: CepPage(
-        title: SizedBox(
-          height: 60,
-          child: Image.asset('assets/images/logo.png'),
-        ),
-      ),
+      home: SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
