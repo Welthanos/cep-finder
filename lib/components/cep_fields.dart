@@ -23,7 +23,7 @@ class CepFields extends StatelessWidget {
               Color.fromARGB(255, 189, 189, 189),
             ],
           )),
-          width: MediaQuery.of(context).size.width * 0.86,
+          width: MediaQuery.of(context).size.width * 0.90,
           height: MediaQuery.of(context).size.width * 0.1,
           child: Padding(
             padding: const EdgeInsets.only(left: 20, right: 10),

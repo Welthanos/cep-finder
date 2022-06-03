@@ -8,7 +8,6 @@ import '../components/cep_boxes.dart';
 // ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 
-
 class CepPage extends StatefulWidget {
   const CepPage({Key? key}) : super(key: key);
 
@@ -17,10 +16,20 @@ class CepPage extends StatefulWidget {
 }
 
 class _CepPageState extends State<CepPage> {
-
-  Widget logo = SizedBox(height: 60, child: Image.asset('assets/images/logo.png'));
+  Widget logo =
+      SizedBox(height: 60, child: Image.asset('assets/images/logo_br.png'));
 
   var logradouro = {};
+
+  Widget background01 = Image.asset(
+    'assets/images/background_01.png',
+    fit: BoxFit.fill,
+  );
+
+  Widget background02 = Image.asset(
+    'assets/images/background_02.png',
+    fit: BoxFit.cover,
+  );
 
   Future getData(cepInformado) async {
     var url = Uri.parse("https://viacep.com.br/ws/$cepInformado/json/");
@@ -40,37 +49,34 @@ class _CepPageState extends State<CepPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: const Color.fromARGB(255, 141, 141, 141),
         toolbarHeight: 75,
         title: logo,
       ),
-      body: Container(
-        color: const Color.fromARGB(255, 238, 238, 238),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Center(
-              child: SizedBox(
-                width: 360,
-                child: SearchBar(getData: getData),
-              ),
-            ),
-            const SizedBox(height: 40),
-            logradouro.length != 5
-                ? const Text("")
-                : CepBoxes(
-                    cep: logradouro["cep"].toString(),
-                    logradouro: logradouro["logradouro"].toString(),
-                    bairro: logradouro["bairro"].toString(),
-                    localidade: logradouro["localidade"].toString(),
-                    uf: logradouro["uf"].toString(),
-                  ),
-            const SizedBox(height: 35),
-            const BottomImage(),
-          ],
-        ),
+      body: Stack(
+        children: [
+          SizedBox.expand(
+            child: logradouro.isEmpty ? background01 : background02,
+          ),
+          Column(
+            children: [
+              SearchBar(getData: getData),
+              const SizedBox(height: 30),
+              logradouro.length != 5
+                  ? const Text("")
+                  : CepBoxes(
+                      cep: logradouro["cep"].toString(),
+                      logradouro: logradouro["logradouro"].toString(),
+                      bairro: logradouro["bairro"].toString(),
+                      localidade: logradouro["localidade"].toString(),
+                      uf: logradouro["uf"].toString(),
+                    ),
+            ],
+          ),
+        ],
       ),
     );
   }

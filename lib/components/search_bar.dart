@@ -10,7 +10,7 @@ class SearchBar extends StatefulWidget {
 class _SearchBarState extends State<SearchBar> {
   InputDecoration fieldDecor = InputDecoration(
     filled: true,
-    fillColor: Colors.white,
+    fillColor: const Color.fromARGB(255, 97, 97, 97),
     prefixIcon: const Padding(
       padding: EdgeInsets.only(left: 10),
       child: Icon(Icons.search, color: Color.fromARGB(255, 165, 165, 165)),
@@ -34,17 +34,20 @@ class _SearchBarState extends State<SearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      onChanged: (text) {
-        if (text.length == 8) {
-          widget.getData(text);
-        }
-      },
-      style: const TextStyle(
-        color: Color.fromARGB(255, 165, 165, 165),
+    return Padding(
+      padding: const EdgeInsets.all( 18),
+      child: TextField(
+        onChanged: (text) {
+          if (text.length == 8) {
+            widget.getData(text);
+          }
+        },
+        style: const TextStyle(
+          color: Color.fromARGB(255, 165, 165, 165),
+        ),
+        cursorColor: const Color.fromARGB(255, 165, 165, 165),
+        decoration: fieldDecor,
       ),
-      cursorColor: const Color.fromARGB(255, 165, 165, 165),
-      decoration: fieldDecor,
     );
   }
 }
