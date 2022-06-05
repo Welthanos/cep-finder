@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:cep_finder/screens/cep_page.dart';
+import 'package:cep_finder/screens/cep_finder_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {

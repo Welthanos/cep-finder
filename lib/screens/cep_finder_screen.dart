@@ -1,10 +1,7 @@
 import 'dart:convert';
-import 'package:cep_finder/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
-
-import 'package:cep_finder/components/bottom_image.dart';
 import 'package:cep_finder/components/search_bar.dart';
-import '../components/cep_boxes.dart';
+import '../components/fields.dart';
 
 // ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
@@ -18,11 +15,10 @@ class CepPage extends StatefulWidget {
 
 class _CepPageState extends State<CepPage> {
 
-
   Widget logo =
-      SizedBox(height: 60, child: Image.asset('assets/images/logo_cz.png'));
+      SizedBox(height: 60, child: Image.asset('assets/images/logo.png'));
 
-  var logradouro = {};
+  var logradour = {};
 
   Widget background01 = Image.asset(
     'assets/images/background_01.png',
@@ -39,7 +35,7 @@ class _CepPageState extends State<CepPage> {
     var response = await http.get(url);
     var text = json.decode(response.body);
     setState(() {
-      logradouro = {
+      logradour = {
         "cep": text["cep"],
         "logradouro": text["logradouro"],
         "bairro": text["bairro"],
@@ -54,28 +50,27 @@ class _CepPageState extends State<CepPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: const Color.fromARGB(255, 71, 71, 71),
+        backgroundColor: const Color.fromARGB(255, 66, 66, 66),
         toolbarHeight: 75,
         title: logo,
       ),
       body: Stack(
         children: [
           SizedBox.expand(
-            child: logradouro.isEmpty ? background01 : background02,
+            child: logradour.isEmpty ? background01 : background02,
           ),
           Column(
             children: [
               SearchBar(getData: getData),
-              const SizedBox(height: 25),
-              logradouro.length != 5
-                  ? const Text("")
+              const SizedBox(height: 22),
+                   logradour.length != 5
+                  ? const SizedBox()
                   : CepBoxes(
-                      cep: logradouro["cep"].toString(),
-                      logradouro: logradouro["logradouro"].toString(),
-                      bairro: logradouro["bairro"].toString(),
-                      localidade: logradouro["localidade"].toString(),
-                      uf: logradouro["uf"].toString(),
+                      cep: logradour["cep"].toString(),
+                      logradouro: logradour["logradouro"].toString(),
+                      bairro: logradour["bairro"].toString(),
+                      localidade: logradour["localidade"].toString(),
+                      uf: logradour["uf"].toString(),
                     ),
             ],
           ),
