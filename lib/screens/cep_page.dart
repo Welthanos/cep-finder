@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:cep_finder/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cep_finder/components/bottom_image.dart';
@@ -16,8 +17,10 @@ class CepPage extends StatefulWidget {
 }
 
 class _CepPageState extends State<CepPage> {
+
+
   Widget logo =
-      SizedBox(height: 60, child: Image.asset('assets/images/logo_br.png'));
+      SizedBox(height: 60, child: Image.asset('assets/images/logo_cz.png'));
 
   var logradouro = {};
 
@@ -52,7 +55,7 @@ class _CepPageState extends State<CepPage> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: const Color.fromARGB(255, 141, 141, 141),
+        backgroundColor: const Color.fromARGB(255, 71, 71, 71),
         toolbarHeight: 75,
         title: logo,
       ),
@@ -64,7 +67,7 @@ class _CepPageState extends State<CepPage> {
           Column(
             children: [
               SearchBar(getData: getData),
-              const SizedBox(height: 30),
+              const SizedBox(height: 25),
               logradouro.length != 5
                   ? const Text("")
                   : CepBoxes(

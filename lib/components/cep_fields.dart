@@ -19,8 +19,8 @@ class CepFields extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Color.fromARGB(255, 77, 77, 77),
-              Color.fromARGB(255, 189, 189, 189),
+              Color.fromARGB(255, 61, 61, 61),
+              Color.fromARGB(255, 139, 139, 139),
             ],
           )),
           width: MediaQuery.of(context).size.width * 0.90,
